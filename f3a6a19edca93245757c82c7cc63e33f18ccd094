@@ -1,0 +1,20 @@
+[SIGNOFF f3a6a19]: human comprehension and risk attestation
+
+Reviewed the vendored git-signoff skill scaffold (attest.py/verify_signoff.py pinned at 95c048d), repo-local config (domain-science profile, main-branch ruleset with required_approving_review_count: 0), and the two GitHub Actions workflows. Verified the approval-marker binding mechanism, the non-fatal/self-healing design of the notes-push and stale-state checks, the fork-PR permission split (read-only token vs. write-only-on-trusted-push), and confirmed CI's verify-signoff check cannot cryptographically prove transcript authenticity. Two trade-offs and two risks explicitly accepted.
+
+Signoff-Spec-Version: 1.0
+Signoff-Status: VERIFIED_BY_HUMAN
+Signoff-Timestamp: 2026-09-21T14:55:34Z
+Signoff-Base-SHA: 1d79d2a8a7b643585e603c14af76c8fe2e7ff3d2
+Signoff-Reviewed-Commit-SHA: f3a6a19edca93245757c82c7cc63e33f18ccd094
+Signoff-Reviewed-Tree-SHA: a274c9464e9977273aa5ee55963ec7b4ef9f9b33
+Signoff-Harness-ID: claude-code
+Signoff-Conversation-ID: 06ab8ff1-4904-48ce-a9a6-d8dd7b978a49
+Signoff-Transcript-Digest: sha256:c3a494865aebd434a16fc363c8525241734c764083092934fbe9a6705d62e650
+Signoff-Transcript-Bytes: 632166
+Signoff-Tradeoff: required_approving_review_count is 0 on main -- the signoff attestation substitutes for traditional human PR review rather than supplementing it; personal commitment not to rubber-stamp is the enforcement, not a technical control
+Signoff-Tradeoff: repo-local interview profile is domain-science (physics-flavored emphases: units, CFL timesteps, moist thermodynamics) despite route-extract having no physical-science content; kept as-is knowingly since unused emphases are cosmetically mismatched but functionally harmless
+Signoff-Risk: verify-signoff's CI head-mode check validates only trailer well-formedness and never re-hashes a transcript (only local --audit does); combined with required_approving_review_count: 0, a well-formatted forged attestation could merge to main with zero real human review
+Signoff-Risk: vendored skill (commit 95c048d) and verify Action (@verify-v1.6) are pinned to a third-party repo at refs that are mutable upstream; pin does not fully protect against a compromised tag, and re-pinning is manual, owned by the user
+Signoff-Verified-By: quinnk@bu.edu
+Signoff-Agent: harness=claude-code/N/A model=claude-sonnet-5 reasoning=high interview=skeptical/domain-science/sha256:f8508fa3740f
