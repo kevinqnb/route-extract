@@ -1,5 +1,7 @@
 # route-extract
 
+[![attested by humans](https://github.com/kevinqnb/route-extract/actions/workflows/git-signoff.yml/badge.svg)](https://github.com/kevinqnb/route-extract/actions/workflows/git-signoff.yml)
+
 Benchmarking routing, cascade, and scheduling strategies for information
 extraction -- methods that take a collection of extraction models (LLMs or
 smaller NLP models) and decide, per document or per field, which model(s) to
