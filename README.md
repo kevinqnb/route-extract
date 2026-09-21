@@ -43,6 +43,5 @@ Every method fits against the same profiling table -- see `CLAUDE.md` for the
 design and current implementation status.
 
 ## Development
-
-Built through the harness (`notes/hub/conventions.md`, a private research-notes
-repo, not part of this checkout). See `CLAUDE.md`.
+* `/devlog` run after a build to log prompt and implementation details to the devlog directory
+* `/signoff` run before opening a PR to audit and verify code with claude before pushing
