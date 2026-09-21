@@ -1,0 +1,5 @@
+{
+  "train": ["doc-ad-1.pdf"],
+  "valid": ["doc-ad-1.pdf"],
+  "test": []
+}

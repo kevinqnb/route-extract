@@ -1,0 +1,35 @@
+kind: llm
+key: gpt-oss-120b
+model: openai/gpt-oss-120b
+role: candidate
+serving: external
+base_url_env: ROUTE_EXTRACT_GPT_OSS_120B_BASE_URL
+hardware:
+  device: cuda
+  min_vram_gb: 80
+  gpu_count: 1
+  gpu_compute_capability: "9.0"
+  max_walltime: "24:00:00"
+  notes: >-
+    ~120B params / ~5B active MoE; needs 80GB-class VRAM even quantized (A100/H100
+    80GB, or multi-GPU tensor-parallel).
+vllm_args: ["--reasoning-parser", "openai_gptoss"]
+extra_body:
+  reasoning_effort: low
+notes: >-
+  reasoning_effort="low": harmony-format gpt-oss models always do some reasoning --
+  there is no full "off" switch analogous to Qwen3's -- so "low" is the closest
+  available approximation. This means this model's timing/accuracy numbers carry a
+  residual reasoning-token cost, a known limitation of comparing model families this
+  way rather than something this harness can equalize.
+
+  serving=external + base_url_env, not local_vllm-in-the-client-process: this model
+  is still started with vLLM (`vllm_args` above is what experiments/serve_model.py
+  passes it), but as its own standalone server job (`bash experiments/submit.sh
+  serve gpt-oss-120b`) rather than inside whatever job runs run_benchmark.py/
+  run_training.py. A routing/cascade/scheduling comparison needs every model_key in
+  M reachable at once, and each is typically sized for its own GPU node -- one
+  client process starting+stopping N local_vllm servers in sequence inside itself
+  doesn't give you that. base_url_env is the manual-fallback path (set it yourself
+  if the client's node doesn't share a filesystem with the server's); the normal
+  path is experiments/.endpoints.json, written automatically by serve_model.py.

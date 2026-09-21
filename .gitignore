@@ -216,3 +216,20 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# route-extract project-specific
+
+# VRDU data -- regenerate with `uv run data/download_vrdu.py`
+data/vrdu/
+
+# Experiment run output (regenerate with experiments/run_{benchmark,training}.py)
+experiments/results/
+experiments/out/
+experiments/.endpoints.json
+
+# gitignored per-user cluster submit wrapper (see experiments/README or CLAUDE.md)
+experiments/submit.sh
+
+# Harness: symlink to the private research-notes repo, machine-specific
+notes
+CLAUDE.local.md

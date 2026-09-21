@@ -1,0 +1,42 @@
+{
+  "corpora": {
+    "ad-buy-form": {
+      "dataset_name": "DeepForm",
+      "entity_name_to_match_func": {
+        "advertiser": "GeneralStringMatch",
+        "gross_amount": "PriceMatch",
+        "flight_from": "DateMatch"
+      }
+    },
+    "registration-form": {
+      "dataset_name": "FARA",
+      "entity_name_to_match_func": {
+        "registration_num": "NumericalStringMatch",
+        "file_date": "DateMatch"
+      }
+    }
+  },
+  "documents": {
+    "doc-ad-1": {
+      "corpus": "ad-buy-form",
+      "filename": "doc-ad-1.pdf",
+      "ocr_text": "Page 1\nADVERTISER: Acme Corp\nGROSS AMOUNT: $1,250.00\nFLIGHT FROM: 01/02/2024\nPage 2\nmore stuff",
+      "pages": [[0, 77], [77, 94]],
+      "fields": {
+        "advertiser": ["Acme Corp"],
+        "gross_amount": ["$1,250.00"],
+        "flight_from": ["01/02/2024"]
+      }
+    },
+    "doc-reg-1": {
+      "corpus": "registration-form",
+      "filename": "doc-reg-1.pdf",
+      "ocr_text": "REGISTRATION NUMBER: 4821\nFILE DATE: 03/15/2023",
+      "pages": [[0, 47]],
+      "fields": {
+        "registration_num": ["4821"],
+        "file_date": ["03/15/2023"]
+      }
+    }
+  }
+}
